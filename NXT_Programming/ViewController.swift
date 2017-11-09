@@ -9,7 +9,12 @@
 import UIKit
 import SocketIO
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+// NEED TO INCLUDE THE PROTOCOL UNDER THIS COMMENT
+protocol TableDelegate {
+    func initializeTable(selectedIndex: Int, macAddressArray: Array<String>)
+}
+
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddressDelegate {
     @IBOutlet weak var connectButton: UIBarButtonItem!
     @IBOutlet weak var disconnectButton: UIBarButtonItem!
     @IBOutlet weak var sendJSONButton: UIButton!
@@ -17,22 +22,49 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var getMacAddressesButton: UIButton!
     @IBOutlet weak var macAddressTableView: UITableView!
     
+    // NEED THIS VARIABLE
     let socket: SocketIOClient = SocketIOClient(socketURL: URL(string: "http://robocode-server.herokuapp.com")!)
+    
+    
     //let socket: SocketIOClient = SocketIOClient(socketURL: URL(string: "http://localhost:3000")!)
     var clientArray: Array<String> = []
+    var programNum: Int = -1
+    var programsDictionary: NSMutableDictionary = [:]
+    
+    
+    // Delegate variables - NEED THE REST OF THE VARIABLES BELOW THIS COMMENT
+    var tableDelegate: TableDelegate?
+    var macAddressArray: Array<String> = [] // Used to reload tableView
+    var chosenMacAddress: String = "" // The MAC address that the app will "build" to
+    var chosenMacAddressIndex: Int = -1 // Also used to reload the tableView
+    
+    // Variables to modify from the StartupViewController
+    var isNewProgram: Bool?
+    var programName: String = ""
+    var programJSON: String = ""
+    var realmID: String = ""
+    
+    var commandsArray: Array<Dictionary<String, Any>> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.addListeners()
         self.disconnectButton.isEnabled = false
-        self.sendJSONButton.isEnabled = false
+        self.sendJSONButton.isEnabled = true
         self.getMacAddressesButton.isEnabled = false
+        
+        // NEED THE REST OF THE CODE IN THIS FUNCTION BELOW THIS COMMENT
+        self.addListeners()
+        commandsArray = JSONHelper.parseJSONWith(json: self.programJSON)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     func addAlert(title: String, message: String) {
@@ -42,7 +74,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.present(alertController, animated: true)
     }
     
+    
+    // NEED THIS FUNCTION. CALL IN viewDidLoad() METHOD
     func addListeners() {
+        socket.on(clientEvent: .connect) { data, ack in
+            
+                                // *********************************************
+            let jsonString = "" // * CHANGE THIS TO WHAT THE ACTUAL PROGRAM IS *
+                                // *********************************************
+            
+            // The address for the json will be stored in the variable: self.chosenMacAddress
+ 
+            
+            self.socket.emit("run code", jsonString)
+        }
+        
+        socket.on("busy") { data, ack in
+            print("Server is busy. Please rebuild in a few seconds")
+        }
+        
+        /*
         socket.on(clientEvent: .connect) { data, ack in
             self.connectButton.isEnabled = false
             self.disconnectButton.isEnabled = true
@@ -80,6 +131,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             self.macAddressTableView.reloadData()
         }
+        */
     }
     
     
@@ -87,17 +139,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.socket.connect()
     }
     
+    
     @IBAction func sendJSONButton(_ sender: UIButton) {
-        // let json = JSON(["type": "Medium Motor", "power": 50, "rotations": 5, "brake": false])
-        // let json = JSON(["type": "Large Motor", "power": 50, "rotations": 5, "brake": false])
-        // let json = JSON(["type": "Move Steering", "steering": 0, "power": 50, "rotations": 5, "brake": false])
-        // let json = JSON(["type": "Move Tank", "powerLeft": 50, "powerRight": 50, "rotations": 5, "brake": false])
-        // let json = JSON(["type": "sound", "freq": 100, "duration": 475])
-        
         let address: String = self.idLabel.text!
         
-        let json: JSON =  ["commands":[["type":"sound", "freq":440, "duration":1000], ["type":"motor_medium", "revolutions":4, "duration":50]], "address":address]
+        let json: JSON =  ["commands":[["type":"playsound", "soundfile": "Woops"], ["type":"motor", "brake": true, "power": 100, "revolutions":5, "port":"A"]], "address":address]
+        
         let jsonString = json.description //json.rawString([.castNilToNSNull: true])!
+        //var array = JSONHelper.parseJSONWith(json: jsonString)
+        //JSONHelper.iterateArrayOfDictionariesWith(array: array)
         //self.socket.emit("jsonCommand", jsonString, self.idLabel.text as String!)
         self.socket.emit("run code", jsonString)
     }
@@ -118,6 +168,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.socket.emit("get available nxts")
     }
     
+    /*
     @IBAction func playSoundButtonDidPress(_ sender: UIButton) {
         var request = URLRequest(url: URL(string: "https://robocode-server.herokuapp.com/test")!)
         request.httpMethod = "GET"
@@ -137,7 +188,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         task.resume()
     }
-    
+    */
+ 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return clientArray.count
     }
@@ -164,25 +216,106 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         self.idLabel.text = nil
     }
-    /*
-    func parseAddresses(addressList: String) {
-        var parseAddress = false
-        var address = ""
-        for i in addressList.characters.indices {
-            if addressList[i] == "\"" && !parseAddress
-            {
-                parseAddress = true
+
+    
+    @IBAction func testDataPersistenceDidPress(_ sender: UIButton) {
+        let testDictionary =  ["5": "json", "3": "json", "4": "json"] as NSMutableDictionary
+        ProgramManager.saveProgramWith(originalPrograms: testDictionary, programJSON: "newjson", programNumber: "3")
+        //ProgramManager.loadProgramWith(programNumber: "3")
+    }
+    
+    
+    // NEED THIS IBAction FUNCTION TO SEND JSON TO THE SERVER/ROBOT
+    @IBAction func buildBarButtonDidPress(_ sender: UIBarButtonItem) {
+        if self.chosenMacAddressIndex > -1 {
+            socket.connect()
+            socket.disconnect()
+        }
+    }
+    
+    // NEED THIS IBAction FUNCTION TO SAVE A PROGRAM
+    @IBAction func saveBarButtonDidPress(_ sender: UIBarButtonItem) {
+        
+                            // *********************************************
+        let jsonString = "" // * CHANGE THIS TO WHAT THE ACTUAL PROGRAM IS *
+                            // *********************************************
+        
+        if self.isNewProgram! {
+            let valid = ProgramManager.saveNewProgramWith(programName: "newName", programJSON: jsonString)
+            
+            if !valid {
+                print("A program with the same name already exists")
             }
-            else if addressList[i] != "\"" && parseAddress
-            {
-                address.append(addressList[i])
-            }
-            else if addressList[i] == "\"" && parseAddress
-            {
-                self.clientArray.append(address)
-                parseAddress = false
+        } else {
+            let valid = ProgramManager.updateProgramWith(programName: self.programName, programJSON: jsonString, id: self.realmID)
+            
+            if !valid {
+                print("A program with the same name already exists")
             }
         }
+    }
+    
+    // NEED THIS IBAction FUNCTION TO RETURN TO THE STARTUP SCREEN. COMMENT THIS OUT IF ERRORS SHOW UP
+    @IBAction func backBarButtonDidPress(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
+    
+    // NEED THIS FUNCTION
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? AddressTableViewController {
+            destination.addressDelegate = self
+            self.tableDelegate = destination
+        }
+    }
+    
+    // NEED THE REST OF THE FUNCTIONS BELOW THIS COMMENT (BESIDES THE COMMENTED OUT ONES)
+    
+    // AddressDelegate functions
+    func updateMacAddressWith(index: Int) {
+        self.chosenMacAddressIndex = index
+        if index > -1 {
+            self.chosenMacAddress = self.macAddressArray[self.chosenMacAddressIndex]
+        } else {
+            self.chosenMacAddress = ""
+        }
+    }
+    
+    func storeMacAddressesWith(macAddressArray: Array<String>) {
+        self.macAddressArray = macAddressArray
+    }
+    
+    func initializeTableView() {
+        self.tableDelegate?.initializeTable(selectedIndex: self.chosenMacAddressIndex, macAddressArray: self.macAddressArray)
+    }
+    
+    /*
+    @IBAction func saveProgramButtonDidPress(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: title, message: "Enter Theoretical Program", preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
+            if let field = alertController.textFields?[0] {
+                ProgramManager.saveProgramWith(originalPrograms: self.programsDictionary, programJSON: field.text!, programNumber: String(self.programsDictionary.count))
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addTextField(configurationHandler: nil)
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true)
+    }
+    */
+    
+    
+    /*
+    @IBAction func loadProgramButtonDidPress(_ sender: UIBarButtonItem) {
+        self.programsDictionary = ProgramManager.loadAllPrograms()
+        var programs: String = ""
+        for (programNumber, programJSON) in self.programsDictionary {
+            programs += "\(programNumber) : \(programJSON) \n"
+        }
+        self.programLabel.text = programs
     }
  */
     

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="30B-aE-fhw">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Program-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="NXT_Programming" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddY-om-G0z">
-                                <rect key="frame" x="418" y="141" width="188" height="60"/>
+                                <rect key="frame" x="397" y="141" width="230" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Send JSON to Device"/>
                                 <connections>
@@ -46,23 +47,14 @@
                                 </items>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1P-cf-vVg">
-                                <rect key="frame" x="418" y="103" width="188" height="30"/>
+                                <rect key="frame" x="397" y="103" width="230" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlN-VQ-sqa">
-                                <rect key="frame" x="418" y="209" width="188" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Play Sound Through Server"/>
-                                <connections>
-                                    <action selector="playSoundButtonDidPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gPx-he-Tax"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1KZ-Fu-rvJ">
-                                <rect key="frame" x="418" y="345" width="188" height="321"/>
+                                <rect key="frame" x="397" y="345" width="230" height="321"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -71,16 +63,48 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTD-Jj-6Kb">
-                                <rect key="frame" x="418" y="277" width="188" height="60"/>
+                                <rect key="frame" x="397" y="277" width="230" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Get Mac Addresses"/>
                                 <connections>
                                     <action selector="getMacAddressesButtonDidPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t1q-s1-6Ec"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atV-uM-Twg">
+                                <rect key="frame" x="397" y="209" width="230" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Test Data Persistence"/>
+                                <connections>
+                                    <action selector="testDataPersistenceDidPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Xq-mO-oVX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Program" id="h3s-Vh-aGx">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="fp2-x4-5mo">
+                            <connections>
+                                <action selector="backBarButtonDidPress:" destination="BYZ-38-t0r" id="V4G-PE-8yF"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Connect" id="Pe2-JW-Fms">
+                                <connections>
+                                    <segue destination="dXP-wX-4Jr" kind="show" id="BWb-zg-0a5"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Save" id="no1-dP-3ym">
+                                <connections>
+                                    <action selector="saveBarButtonDidPress:" destination="BYZ-38-t0r" id="w8x-CF-fn8"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Build" id="JTv-sC-tjC">
+                                <connections>
+                                    <action selector="buildBarButtonDidPress:" destination="BYZ-38-t0r" id="CKl-z1-fhj"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="connectButton" destination="TNN-DM-kaU" id="MVz-t7-Tcu"/>
                         <outlet property="disconnectButton" destination="DTC-xX-qD2" id="Njq-zl-83p"/>
@@ -92,7 +116,239 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="33.984375" y="39.84375"/>
+            <point key="canvasLocation" x="1482.421875" y="39.84375"/>
+        </scene>
+        <!--NXT Bricks-->
+        <scene sceneID="TiH-y3-loS">
+            <objects>
+                <tableViewController storyboardIdentifier="AddressTableViewController" id="dXP-wX-4Jr" customClass="AddressTableViewController" customModule="NXT_Programming" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="PuY-XV-9ia">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddressCell" id="0tA-eq-jkm" customClass="AddressCell" customModule="NXT_Programming" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="1024" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0tA-eq-jkm" id="RHW-MY-euT">
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dXP-wX-4Jr" id="lwD-1T-nL4"/>
+                            <outlet property="delegate" destination="dXP-wX-4Jr" id="BGr-y7-Qh7"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="NXT Bricks" id="SAg-bP-lvY">
+                        <barButtonItem key="rightBarButtonItem" title="Server" id="e3f-Gh-nQN">
+                            <connections>
+                                <segue destination="ShP-rR-YcH" kind="popoverPresentation" identifier="Popover" animates="NO" popoverAnchorBarButtonItem="e3f-Gh-nQN" id="FcX-eS-WVw">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XGg-UC-OFR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2228.90625" y="39.84375"/>
+        </scene>
+        <!--Popover View Controller-->
+        <scene sceneID="hqW-ZN-fsD">
+            <objects>
+                <viewController id="ShP-rR-YcH" customClass="PopoverViewController" customModule="NXT_Programming" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9wZ-5h-7Ec"/>
+                        <viewControllerLayoutGuide type="bottom" id="aag-ei-Xlx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h0N-cU-Rhk">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2S-jt-WSZ">
+                                <rect key="frame" x="0.0" y="150" width="200" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Disconnect from Server"/>
+                                <connections>
+                                    <action selector="disconnectFromServerButtonDidPress:" destination="ShP-rR-YcH" eventType="touchUpInside" id="YPw-w5-ufl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIK-48-Bt3">
+                                <rect key="frame" x="0.0" y="50" width="200" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Get MAC Addresses"/>
+                                <connections>
+                                    <action selector="getMACAddressesButtonDidPress:" destination="ShP-rR-YcH" eventType="touchUpInside" id="tKK-69-RLE"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Not Connected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IA-Uy-0yO">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vE-Qc-L7X">
+                                <rect key="frame" x="0.0" y="100" width="200" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Connect to Server"/>
+                                <connections>
+                                    <action selector="connectToServerButtonDidPress:" destination="ShP-rR-YcH" eventType="touchUpInside" id="Ri5-mM-fBv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="200"/>
+                    <connections>
+                        <outlet property="connectToServerButton" destination="0vE-Qc-L7X" id="a7X-0p-7JU"/>
+                        <outlet property="disconnectFromServerButton" destination="d2S-jt-WSZ" id="MV1-Vc-mry"/>
+                        <outlet property="getMacAddressesButton" destination="oIK-48-Bt3" id="sxs-2J-Znf"/>
+                        <outlet property="serverStatusLabel" destination="1IA-Uy-0yO" id="cVx-a6-F28"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="suX-KY-xK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2693.5546875" y="39.84375"/>
+        </scene>
+        <!--Startup View Controller-->
+        <scene sceneID="8r3-Qd-zcu">
+            <objects>
+                <viewController id="30B-aE-fhw" customClass="StartupViewController" customModule="NXT_Programming" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="n9N-Gt-36k"/>
+                        <viewControllerLayoutGuide type="bottom" id="8NG-Gz-Rlc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YNb-9l-Oqq">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" directionalLockEnabled="YES" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="253-fb-raZ">
+                                <rect key="frame" x="0.0" y="588" width="1024" height="180"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Cng-gq-QDI">
+                                    <size key="itemSize" width="175" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProgramCell" id="qnM-3w-Url" customClass="ProgramCell" customModule="NXT_Programming" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="40" width="175" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="175" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eb4-jX-Ynz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="175" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="programLabel" destination="eb4-jX-Ynz" id="csI-Ls-QYK"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="30B-aE-fhw" id="x0X-mp-qeu"/>
+                                    <outlet property="delegate" destination="30B-aE-fhw" id="C82-CZ-WdF"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skA-QW-Ze3">
+                                <rect key="frame" x="437" y="230" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Test Realm"/>
+                                <connections>
+                                    <action selector="testRealmButtonDidPress:" destination="30B-aE-fhw" eventType="touchUpInside" id="wGB-Ee-nER"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V65-13-fdn">
+                                <rect key="frame" x="437" y="388" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Clear Realm Objects"/>
+                                <connections>
+                                    <action selector="clearRealmObjectsButtonDidPress:" destination="30B-aE-fhw" eventType="touchUpInside" id="Jbq-sh-dkp"/>
+                                </connections>
+                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="40I-cs-efZ">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem width="850" style="plain" systemItem="fixedSpace" id="92r-Ii-12k"/>
+                                    <barButtonItem title="New" id="Cox-pO-XMX">
+                                        <connections>
+                                            <action selector="newBarButtonDidPress:" destination="30B-aE-fhw" id="m26-ml-5yZ"/>
+                                            <segue destination="x6j-M2-LVt" kind="presentation" modalTransitionStyle="crossDissolve" id="pAM-g9-hJp"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="BOw-Xc-Gd6"/>
+                                    <barButtonItem enabled="NO" title="Open" id="guq-xt-thN">
+                                        <connections>
+                                            <action selector="openBarButtonDidPress:" destination="30B-aE-fhw" id="mDg-ci-bqM"/>
+                                            <segue destination="x6j-M2-LVt" kind="presentation" modalTransitionStyle="crossDissolve" id="hw8-uS-pfh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9ZL-5q-lnZ"/>
+                                    <barButtonItem enabled="NO" title="Delete" id="6de-zX-xRj">
+                                        <connections>
+                                            <action selector="deleteBarButtonDidPress:" destination="30B-aE-fhw" id="h5h-dG-2dG"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="BXG-QD-CEq">
+                                <rect key="frame" x="422" y="546" width="181" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="pageIndicatorTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="1" green="0.84174639839999998" blue="0.29881319890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fng-EH-tkc"/>
+                    <connections>
+                        <outlet property="collectionView" destination="253-fb-raZ" id="NL6-Q2-s9Z"/>
+                        <outlet property="deleteBarButton" destination="6de-zX-xRj" id="ilT-CZ-opf"/>
+                        <outlet property="newBarButton" destination="Cox-pO-XMX" id="TMC-KW-eUg"/>
+                        <outlet property="openBarButton" destination="guq-xt-thN" id="W5p-B3-BWW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SJq-xp-7VD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="29.882812499999996" y="39.84375"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zrg-SC-vuj">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dTG-jd-w3l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x6j-M2-LVt" customClass="NavigationController" customModule="NXT_Programming" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4i6-Or-fDD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="cBG-ls-Vge"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="758.203125" y="39.84375"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="hw8-uS-pfh"/>
+    </inferredMetricsTieBreakers>
 </document>

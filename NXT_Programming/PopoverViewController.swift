@@ -7,13 +7,54 @@
 //
 
 import UIKit
+import SocketIO
 
-class PopoverViewController: UIViewController {
+protocol PopoverDelegate {
+    func sendMacAddresses(macAddresses: Array<String>)
+    func connectToServer()
+    func disconnectFromServer()
+    func initializePopover()
+}
+
+class PopoverViewController: UIViewController, ServerDelegate {
+    @IBOutlet weak var serverStatusLabel: UILabel!
+    @IBOutlet weak var getMacAddressesButton: UIButton!
+    @IBOutlet weak var connectToServerButton: UIButton!
+    @IBOutlet weak var disconnectFromServerButton: UIButton!
+    
+    var serverStatusString: String = "Not Connected"
+    var getMacAddressButtonEnabled: Bool = false
+    var connectToServerButtonEnabled: Bool = true
+    var disconnectFromServerButtonEnabled: Bool = false
+    
+    var delegate: PopoverDelegate?
+    let socket: SocketIOClient = SocketIOClient(socketURL: URL(string: "http://robocode-server.herokuapp.com")!)
+    var macAddressArray: Array<String> = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.preferredContentSize = CGSize(width: 200, height: 200)
+        
+        delegate?.initializePopover()
+        
+        /*
+        if self.connectToServerButtonEnabled {
+            self.serverStatusLabel.text = "Connected"
+            self.serverStatusLabel.textColor = UIColor.green
+            self.getMacAddressesButton.isEnabled = false
+            self.connectToServerButton.isEnabled = true
+            self.disconnectFromServerButton.isEnabled = false
+        } else {
+            self.serverStatusLabel.text = "Not Connected"
+            self.serverStatusLabel.textColor = UIColor.red
+            self.getMacAddressesButton.isEnabled = true
+            self.connectToServerButton.isEnabled = false
+            self.disconnectFromServerButton.isEnabled = true
+        }
+        */
+        
+        //self.getMacAddressesButton.isEnabled = true
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,7 +62,51 @@ class PopoverViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let source = segue.source as? AddressTableViewController {
+            source.serverDelegate = self
+        }
+    }
+    
+    
+    @IBAction func getMACAddressesButtonDidPress(_ sender: UIButton) {
+        //self.socket.emit("get available nxts")
+        self.macAddressArray.append("Test 1")
+        self.macAddressArray.append("Test 2")
+        self.macAddressArray.append("Test 3")
+        self.delegate?.sendMacAddresses(macAddresses: self.macAddressArray)
+    }
+    
+    @IBAction func connectToServerButtonDidPress(_ sender: UIButton) {
+        self.delegate?.connectToServer()
+    }
 
+    @IBAction func disconnectFromServerButtonDidPress(_ sender: UIButton) {
+        self.delegate?.disconnectFromServer()
+        self.serverStatusLabel.text = "Not Connected"
+        self.serverStatusLabel.textColor = UIColor.red
+        self.connectToServerButton.isEnabled = true
+        self.disconnectFromServerButton.isEnabled = false
+    }
+    
+    // Server Delegate functions
+    func updateServerStatusWhere(connected: Bool) {
+        //print("Updating server status")
+        if connected {
+            self.serverStatusLabel.text = "Connected"
+            self.serverStatusLabel.textColor = UIColor.green
+            self.getMacAddressesButton.isEnabled = true
+            self.connectToServerButton.isEnabled = false
+            self.disconnectFromServerButton.isEnabled = true
+        } else {
+            self.serverStatusLabel.text = "Not Connected"
+            self.serverStatusLabel.textColor = UIColor.red
+            self.getMacAddressesButton.isEnabled = false
+            self.connectToServerButton.isEnabled = true
+            self.disconnectFromServerButton.isEnabled = false
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

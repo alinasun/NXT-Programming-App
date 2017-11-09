@@ -9,5 +9,10 @@
 import UIKit
 
 class Command: NSObject {
-
+    var commandsArray: Array<Dictionary<String, String>> = []
+    
+    init(commandsArray: Array<Dictionary<String, String>>) {
+        
+    }
+    
 }

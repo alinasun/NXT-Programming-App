@@ -9,5 +9,10 @@
 import UIKit
 
 class ProgramCell: UICollectionViewCell {
+    @IBOutlet weak var programLabel: UILabel!
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        self.layer.borderWidth = 1
+    }
 }

@@ -8,8 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		D3DA5D96BCE616526C8B753B /* Pods_NXT_Programming.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF8EEF2357DDD8FA4F92504E /* Pods_NXT_Programming.framework */; };
+		DF00D8841FAA879800D1CE15 /* ProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00D8831FAA879800D1CE15 /* ProgramCell.swift */; };
+		DF00D88D1FAAC4A800D1CE15 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00D88C1FAAC4A800D1CE15 /* Program.swift */; };
+		DF08E1481FABC5980056D8C8 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF08E1471FABC5980056D8C8 /* JSONHelper.swift */; };
+		DF08E14A1FABC6300056D8C8 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF08E1491FABC6300056D8C8 /* Command.swift */; };
+		DF08E14E1FAC28EA0056D8C8 /* AddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF08E14D1FAC28EA0056D8C8 /* AddressTableViewController.swift */; };
+		DF08E1501FAE70F70056D8C8 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF08E14F1FAE70F70056D8C8 /* PopoverViewController.swift */; };
+		DF08E1521FAE89220056D8C8 /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF08E1511FAE89220056D8C8 /* AddressCell.swift */; };
+		DF18583D1FB4681F0008DA13 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF18583C1FB4681F0008DA13 /* NavigationController.swift */; };
 		DF227B321F733BD7007E0208 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF227B311F733BD7007E0208 /* SocketIOManager.swift */; };
 		DF71BEC71F73A20400E2C9B3 /* ClientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF71BEC61F73A20400E2C9B3 /* ClientController.swift */; };
+		DF8F317B1F98142C003EB957 /* ProgramManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8F317A1F98142C003EB957 /* ProgramManager.swift */; };
 		DFC286331F7339B700FFEEA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC286321F7339B700FFEEA4 /* AppDelegate.swift */; };
 		DFC286351F7339B700FFEEA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC286341F7339B700FFEEA4 /* ViewController.swift */; };
 		DFC286381F7339B700FFEEA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFC286361F7339B700FFEEA4 /* Main.storyboard */; };
@@ -18,6 +27,7 @@
 		DFC286481F7339B700FFEEA4 /* NXT_ProgrammingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC286471F7339B700FFEEA4 /* NXT_ProgrammingTests.swift */; };
 		DFC286531F7339B700FFEEA4 /* NXT_ProgrammingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC286521F7339B700FFEEA4 /* NXT_ProgrammingUITests.swift */; };
 		DFC286611F733A2D00FFEEA4 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC286601F733A2D00FFEEA4 /* SwiftyJSON.swift */; };
+		DFEFA41C1FA28D69001979CA /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEFA41B1FA28D69001979CA /* StartupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,9 +50,20 @@
 /* Begin PBXFileReference section */
 		B2E3F10734A51E342E3767ED /* Pods-NXT_Programming.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NXT_Programming.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NXT_Programming/Pods-NXT_Programming.debug.xcconfig"; sourceTree = "<group>"; };
 		DE10CBE20BDF491311E77CD2 /* Pods-NXT_Programming.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NXT_Programming.release.xcconfig"; path = "Pods/Target Support Files/Pods-NXT_Programming/Pods-NXT_Programming.release.xcconfig"; sourceTree = "<group>"; };
+		DF00D8831FAA879800D1CE15 /* ProgramCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramCell.swift; sourceTree = "<group>"; };
+		DF00D8851FAAB1A700D1CE15 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		DF00D8861FAAB1A700D1CE15 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		DF00D88C1FAAC4A800D1CE15 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
+		DF08E1471FABC5980056D8C8 /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
+		DF08E1491FABC6300056D8C8 /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		DF08E14D1FAC28EA0056D8C8 /* AddressTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableViewController.swift; sourceTree = "<group>"; };
+		DF08E14F1FAE70F70056D8C8 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
+		DF08E1511FAE89220056D8C8 /* AddressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
+		DF18583C1FB4681F0008DA13 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		DF227B311F733BD7007E0208 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		DF71BEC61F73A20400E2C9B3 /* ClientController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientController.swift; sourceTree = "<group>"; };
 		DF8EEF2357DDD8FA4F92504E /* Pods_NXT_Programming.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NXT_Programming.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF8F317A1F98142C003EB957 /* ProgramManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramManager.swift; sourceTree = "<group>"; };
 		DFC2862F1F7339B700FFEEA4 /* NXT_Programming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NXT_Programming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFC286321F7339B700FFEEA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFC286341F7339B700FFEEA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +78,7 @@
 		DFC286521F7339B700FFEEA4 /* NXT_ProgrammingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NXT_ProgrammingUITests.swift; sourceTree = "<group>"; };
 		DFC286541F7339B700FFEEA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFC286601F733A2D00FFEEA4 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		DFEFA41B1FA28D69001979CA /* StartupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +118,13 @@
 		DF71BEC31F73A0E600E2C9B3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DF00D8831FAA879800D1CE15 /* ProgramCell.swift */,
 				DFC286341F7339B700FFEEA4 /* ViewController.swift */,
+				DFEFA41B1FA28D69001979CA /* StartupViewController.swift */,
+				DF08E14D1FAC28EA0056D8C8 /* AddressTableViewController.swift */,
+				DF08E14F1FAE70F70056D8C8 /* PopoverViewController.swift */,
+				DF08E1511FAE89220056D8C8 /* AddressCell.swift */,
+				DF18583C1FB4681F0008DA13 /* NavigationController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -116,6 +144,10 @@
 				DF71BEC61F73A20400E2C9B3 /* ClientController.swift */,
 				DF227B311F733BD7007E0208 /* SocketIOManager.swift */,
 				DFC286601F733A2D00FFEEA4 /* SwiftyJSON.swift */,
+				DF8F317A1F98142C003EB957 /* ProgramManager.swift */,
+				DF00D88C1FAAC4A800D1CE15 /* Program.swift */,
+				DF08E1471FABC5980056D8C8 /* JSONHelper.swift */,
+				DF08E1491FABC6300056D8C8 /* Command.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -123,6 +155,8 @@
 		DFC286261F7339B700FFEEA4 = {
 			isa = PBXGroup;
 			children = (
+				DF00D8851FAAB1A700D1CE15 /* Realm.framework */,
+				DF00D8861FAAB1A700D1CE15 /* RealmSwift.framework */,
 				DFC286311F7339B700FFEEA4 /* NXT_Programming */,
 				DFC286461F7339B700FFEEA4 /* NXT_ProgrammingTests */,
 				DFC286511F7339B700FFEEA4 /* NXT_ProgrammingUITests */,
@@ -253,6 +287,7 @@
 				TargetAttributes = {
 					DFC2862E1F7339B700FFEEA4 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 9S39NBMPQY;
 						ProvisioningStyle = Automatic;
 					};
 					DFC286421F7339B700FFEEA4 = {
@@ -369,9 +404,19 @@
 			files = (
 				DF227B321F733BD7007E0208 /* SocketIOManager.swift in Sources */,
 				DFC286611F733A2D00FFEEA4 /* SwiftyJSON.swift in Sources */,
+				DF08E1501FAE70F70056D8C8 /* PopoverViewController.swift in Sources */,
+				DFEFA41C1FA28D69001979CA /* StartupViewController.swift in Sources */,
+				DF8F317B1F98142C003EB957 /* ProgramManager.swift in Sources */,
+				DF08E14E1FAC28EA0056D8C8 /* AddressTableViewController.swift in Sources */,
+				DF00D8841FAA879800D1CE15 /* ProgramCell.swift in Sources */,
+				DF18583D1FB4681F0008DA13 /* NavigationController.swift in Sources */,
+				DF00D88D1FAAC4A800D1CE15 /* Program.swift in Sources */,
+				DF08E1521FAE89220056D8C8 /* AddressCell.swift in Sources */,
 				DF71BEC71F73A20400E2C9B3 /* ClientController.swift in Sources */,
 				DFC286351F7339B700FFEEA4 /* ViewController.swift in Sources */,
 				DFC286331F7339B700FFEEA4 /* AppDelegate.swift in Sources */,
+				DF08E14A1FABC6300056D8C8 /* Command.swift in Sources */,
+				DF08E1481FABC5980056D8C8 /* JSONHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,12 +570,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B2E3F10734A51E342E3767ED /* Pods-NXT_Programming.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9S39NBMPQY;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = NXT_Programming/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lasbest.NXT-Programming";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lasbest.NXT-Programming123";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -540,12 +589,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DE10CBE20BDF491311E77CD2 /* Pods-NXT_Programming.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9S39NBMPQY;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = NXT_Programming/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lasbest.NXT-Programming";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lasbest.NXT-Programming123";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

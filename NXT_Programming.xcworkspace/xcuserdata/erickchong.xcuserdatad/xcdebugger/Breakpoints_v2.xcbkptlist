@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NXT_Programming/ViewController.swift"
-            timestampString = "528924391.992679"
+            timestampString = "531914403.969598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
             landmarkName = "ViewController"
             landmarkType = "3">
             <Locations>
@@ -103,12 +103,320 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NXT_Programming/ViewController.swift"
-            timestampString = "529524302.420408"
+            timestampString = "531920409.650629"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "sendJSONButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NXT_Programming/ViewController.swift"
+            timestampString = "531920409.650629"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "testDataPersistenceDidPress(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NXT_Programming/Program.swift"
+            timestampString = "531371977.311664"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NXT_Programming/Program.swift"
+            timestampString = "531371977.311664"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NXT_Programming/Program.swift"
+            timestampString = "531371977.311664"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NXT_Programming/ProgramManager.swift"
+            timestampString = "531371977.311664"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "loadAllPrograms()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NXT_Programming/StartupViewController.swift"
+            timestampString = "531920409.650629"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "testRealmButtonDidPress(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NXT_Programming/Command.swift"
+            timestampString = "531352864.354126"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "Command"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NXT_Programming/AddressTableViewController.swift"
+            timestampString = "531895129.292673"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "AddressTableViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NXT_Programming.AddressTableViewController.__deallocating_deinit"
+                  moduleName = "NXT_Programming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erickchong/Documents/Github/NXT-Programming-App/NXT_Programming/AddressTableViewController.swift"
+                  timestampString = "531530859.181056"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NXT_Programming.AddressTableViewController.init (style : __C.UITableViewStyle) -&gt; NXT_Programming.AddressTableViewController"
+                  moduleName = "NXT_Programming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erickchong/Documents/Github/NXT-Programming-App/NXT_Programming/AddressTableViewController.swift"
+                  timestampString = "531530859.183339"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NXT_Programming.AddressTableViewController.__allocating_init (style : __C.UITableViewStyle) -&gt; NXT_Programming.AddressTableViewController"
+                  moduleName = "NXT_Programming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erickchong/Documents/Github/NXT-Programming-App/NXT_Programming/AddressTableViewController.swift"
+                  timestampString = "531530859.185369"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NXT_Programming.AddressTableViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; NXT_Programming.AddressTableViewController"
+                  moduleName = "NXT_Programming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erickchong/Documents/Github/NXT-Programming-App/NXT_Programming/AddressTableViewController.swift"
+                  timestampString = "531530859.187424"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "118">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NXT_Programming.AddressTableViewController.__allocating_init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; NXT_Programming.AddressTableViewController"
+                  moduleName = "NXT_Programming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erickchong/Documents/Github/NXT-Programming-App/NXT_Programming/AddressTableViewController.swift"
+                  timestampString = "531530859.189447"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NXT_Programming.AddressTableViewController.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;NXT_Programming.AddressTableViewController&gt;"
+                  moduleName = "NXT_Programming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erickchong/Documents/Github/NXT-Programming-App/NXT_Programming/AddressTableViewController.swift"
+                  timestampString = "531530859.191463"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NXT_Programming.AddressTableViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;NXT_Programming.AddressTableViewController&gt;"
+                  moduleName = "NXT_Programming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erickchong/Documents/Github/NXT-Programming-App/NXT_Programming/AddressTableViewController.swift"
+                  timestampString = "531530859.193464"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "105">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NXT_Programming/ViewController.swift"
+            timestampString = "531914403.969598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NXT_Programming.ViewController.socket.getter : SocketIO.SocketIOClient"
+                  moduleName = "NXT_Programming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erickchong/Documents/Github/NXT-Programming-App/NXT_Programming/ViewController.swift"
+                  timestampString = "531892580.799123"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NXT_Programming.ViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; NXT_Programming.ViewController"
+                  moduleName = "NXT_Programming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erickchong/Documents/Github/NXT-Programming-App/NXT_Programming/ViewController.swift"
+                  timestampString = "531892580.801393"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "518">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NXT_Programming.ViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;NXT_Programming.ViewController&gt;"
+                  moduleName = "NXT_Programming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erickchong/Documents/Github/NXT-Programming-App/NXT_Programming/ViewController.swift"
+                  timestampString = "531892580.803403"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "400">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NXT_Programming/StartupViewController.swift"
+            timestampString = "531917686.01257"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -1,15 +1,23 @@
 PODS:
+  - Realm (3.0.1):
+    - Realm/Headers (= 3.0.1)
+  - Realm/Headers (3.0.1)
+  - RealmSwift (3.0.1):
+    - Realm (= 3.0.1)
   - Socket.IO-Client-Swift (11.1.3):
     - StarscreamSocketIO (~> 8.0.5)
   - StarscreamSocketIO (8.0.7)
 
 DEPENDENCIES:
+  - RealmSwift
   - Socket.IO-Client-Swift (~> 11.1.3)
 
 SPEC CHECKSUMS:
+  Realm: ba6144c74f835f7497791f6599d63a7755377b83
+  RealmSwift: 7d13b1ac4b6022a13f841e3143e7789c9e40ad0d
   Socket.IO-Client-Swift: b8e59ddc16bc3609ca2f49a4b50253f095d535c8
   StarscreamSocketIO: 00b54e4208481ca5cef089545353aaf126bae16d
 
-PODFILE CHECKSUM: b8322aa7794cb23d70c56fd7f6eeb5ab3f80b0d8
+PODFILE CHECKSUM: 26bd1c6095d8ee7d9a80549fa6211b4983ca6e93
 
 COCOAPODS: 1.1.1

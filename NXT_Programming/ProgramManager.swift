@@ -57,45 +57,88 @@ class ProgramManager: NSObject {
         }
     }
     
-    class func saveProgramsWith(programName: String, programJSON: String) {
-    }
-    
-    class func loadProgramWith(programNumber: String) {
-        if let documents = directories.first {
-            if let urlDocuments = URL(string: documents) {
-                let urlPrograms = urlDocuments.appendingPathComponent("nxtprograms.plist")
-                
-                // Load
-                let loadedPrograms = NSMutableDictionary(contentsOfFile: urlPrograms.path)
-                
-                if let newPrograms = loadedPrograms {
-                    print(newPrograms)
-                }
-                
-                print("Program requested: \(loadedPrograms![programNumber] ?? "-1")")
+    class func saveNewProgramWith(programName: String, programJSON: String) -> Bool {
+        let realm = try! Realm()
+        
+        if realm.objects(Program.self).filter("name = %@", programName).first != nil {
+            return false
+        } else {
+            let program = Program()
+            program.name = programName
+            program.json = programJSON
+            program.date = Int64(Date().ticks)
+            
+            try! realm.write {
+                realm.add(program, update: true)
             }
+            return true
         }
     }
     
-    class func loadAllPrograms() -> NSMutableDictionary {
-        if let documents = directories.first {
-            if let urlDocuments = URL(string: documents) {
-                let urlPrograms = urlDocuments.appendingPathComponent("nxtprograms.plist")
-                
-                // Load
-                let loadedPrograms = NSMutableDictionary(contentsOfFile: urlPrograms.path)
-                print ("Path:  \(urlPrograms.path)")
-                
-                if let newPrograms = loadedPrograms {
-                    print(newPrograms)
-                    return newPrograms
-                }
-                
-                //print("Program requested: \(loadedPrograms![programNumber])")
-            }
+    class func loadAllPrograms() -> Array<Program> {
+        let realm = try! Realm()
+        var resultArray: Array<Program> = []
+        
+        for program in realm.objects(Program.self) {
+            resultArray.append(program)
         }
-        return [:] as NSMutableDictionary
+        
+        // Sort descending (most recent first)
+        return resultArray.sorted {
+            $0.date > $1.date
+        }
     }
-
+    
+    class func updateProgramWith(programName: String, programJSON: String, id: String) -> Bool {
+        let realm = try! Realm()
+        
+        // Programs with name of programName
+        let programs = realm.objects(Program.self).filter("name = %@", programName)
+        
+        if programs.first != nil {
+            // If there exists a program with name equal to programName and it doesn't have the same date
+            // as the program we are updating, then the name already exists so return false
+            if programs.first?.id != id {
+                return false
+            } else {
+                self.updateRealmWith(name: programName, json: programJSON, id: id)
+                return true
+            }
+        } else {
+            self.updateRealmWith(name: programName, json: programJSON, id: id)
+            return true
+        }
+    }
+    
+    class func deleteProgramWith(name: String, json: String, id: String) {
+        let realm = try! Realm()
+        let program = realm.objects(Program.self).filter("id = %@", id)
+        
+        try! realm.write {
+            realm.delete(program)
+        }
+    }
+    
+    class func clearAllPrograms() {
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.deleteAll()
+        }
+    }
+    
+    private class func updateRealmWith(name: String, json: String, id: String) {
+        let realm = try! Realm()
+        
+        let program = Program()
+        program.name = name
+        program.json = json
+        program.id = id
+        program.date = Int64(Date().ticks)
+        
+        try! realm.write {
+            realm.add(program, update: true)
+        }
+    }
     
 }
