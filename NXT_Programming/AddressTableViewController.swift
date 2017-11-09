@@ -133,7 +133,9 @@ class AddressTableViewController: UITableViewController, PopoverDelegate, TableD
     */
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.reloadData() // Temporary solution only
         if let cell = tableView.cellForRow(at: indexPath) {
+            cell.setSelected(true, animated: true)
             cell.accessoryType = .checkmark
         }
         self.addressDelegate?.updateMacAddressWith(index: indexPath.row)
@@ -156,11 +158,13 @@ class AddressTableViewController: UITableViewController, PopoverDelegate, TableD
     // PopoverDelegate functions
     
     func sendMacAddresses(macAddresses: Array<String>) {
-        //self.socket.emit("get available nxts")
+        self.socket.emit("get available nxts")
+        /*
         self.macAddressArray = macAddresses
         self.addressDelegate?.storeMacAddressesWith(macAddressArray: macAddresses)
         self.addressDelegate?.updateMacAddressWith(index: -1)
         self.tableView.reloadData()
+        */
         print("Updated tableView")
     }
     
@@ -189,7 +193,7 @@ class AddressTableViewController: UITableViewController, PopoverDelegate, TableD
         self.tableView.reloadData()
         if selectedIndex > -1 {
             if let cell = tableView.cellForRow(at: IndexPath(item: selectedIndex, section: 0)) {
-                cell.setSelected(true, animated: false)
+                cell.setSelected(true, animated: true)
                 cell.accessoryType = .checkmark
             }
         }

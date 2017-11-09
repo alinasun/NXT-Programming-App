@@ -71,10 +71,10 @@ class PopoverViewController: UIViewController, ServerDelegate {
     
     @IBAction func getMACAddressesButtonDidPress(_ sender: UIButton) {
         //self.socket.emit("get available nxts")
-        self.macAddressArray.append("Test 1")
-        self.macAddressArray.append("Test 2")
-        self.macAddressArray.append("Test 3")
-        self.delegate?.sendMacAddresses(macAddresses: self.macAddressArray)
+        //self.macAddressArray.append("Test 1")
+        //self.macAddressArray.append("Test 2")
+        //self.macAddressArray.append("Test 3")
+        //self.delegate?.sendMacAddresses(macAddresses: self.macAddressArray)
     }
     
     @IBAction func connectToServerButtonDidPress(_ sender: UIButton) {
