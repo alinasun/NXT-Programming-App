@@ -333,7 +333,7 @@
         <scene sceneID="zrg-SC-vuj">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTG-jd-w3l" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x6j-M2-LVt" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x6j-M2-LVt" customClass="NavigationController" customModule="NXT_Programming" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4i6-Or-fDD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

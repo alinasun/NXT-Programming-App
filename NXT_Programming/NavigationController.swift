@@ -6,9 +6,14 @@
 //  Copyright © 2017 LA's BEST. All rights reserved.
 //
 
+protocol NavigationDelegate {
+    func reloadCollectionView()
+}
+
 import UIKit
 
-class NavigationController: UINavigationController {
+class NavigationController: UINavigationController, CollectionDelegate {
+    var navigationDelegate: NavigationDelegate?
     var isNewProgram: Bool = true
     var programName: String = ""
     var programJSON: String = ""
@@ -19,14 +24,17 @@ class NavigationController: UINavigationController {
         
         if let destination = self.viewControllers.first {
             let vc = destination as! ViewController /* REPLACE ViewController WITH THE CORRECT CLASS */
-            print("Attempting to change variables of ViewController")
+            vc.collectionDelegate = self
+            print("Adjusting variables")
             if !isNewProgram {
+                print("Program already exists")
                 vc.isNewProgram = self.isNewProgram
                 vc.programName = self.programName
                 vc.programJSON = self.programJSON
                 vc.realmID = self.realmID
             } else {
-                vc.isNewProgram = true
+                print("Program is new")
+                vc.isNewProgram = self.isNewProgram
             }
         }
     }
@@ -36,25 +44,19 @@ class NavigationController: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // CollectionDelegate functions
+    
+    func sendEventToCollectionView() {
+        //print("Event in navigationcontroller fired")
+        self.navigationDelegate?.reloadCollectionView()
+    }
 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) /* CHANGE VIEWCONTROLLER TO WHATEVER THE TYPE OF THE VIEWCONTROLLER YOU ARE MOVING TO IS */ {
-        print("In prepare for segue function")
-        if let destination = segue.destination as? ViewController {
-            print("In the if statement")
-            if !isNewProgram {
-                destination.isNewProgram = self.isNewProgram
-                destination.programName = self.programName
-                destination.programJSON = self.programJSON
-                destination.realmID = self.realmID
-            } else {
-                print("This is a new program, so don't update anything")
-            }
-        }
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
     }
     
 

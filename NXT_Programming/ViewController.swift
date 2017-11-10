@@ -14,6 +14,10 @@ protocol TableDelegate {
     func initializeTable(selectedIndex: Int, macAddressArray: Array<String>)
 }
 
+protocol CollectionDelegate {
+    func sendEventToCollectionView()
+}
+
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddressDelegate {
     @IBOutlet weak var connectButton: UIBarButtonItem!
     @IBOutlet weak var disconnectButton: UIBarButtonItem!
@@ -39,12 +43,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var chosenMacAddressIndex: Int = -1 // Also used to reload the tableView
     
     // Variables to modify from the StartupViewController
-    var isNewProgram: Bool = true
+    var isNewProgram: Bool?
     var programName: String = ""
     var programJSON: String = ""
     var realmID: String = ""
     
     var commandsArray: Array<Dictionary<String, Any>> = []
+    
+    var collectionDelegate: CollectionDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,10 +62,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // NEED THE REST OF THE CODE IN THIS FUNCTION BELOW THIS COMMENT
         self.addListeners()
         commandsArray = JSONHelper.parseJSONWith(json: self.programJSON)
-        
-        if self.programJSON.characters.count > 0 {
-            print("Program's json: \(self.programJSON)")
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,7 +84,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // NEED THIS FUNCTION. CALL IN viewDidLoad() METHOD
     func addListeners() {
         socket.on(clientEvent: .connect) { data, ack in
-            
+            print("Mac address that is selected: \(self.chosenMacAddress)")
                                 // *********************************************
             let jsonString = "" // * CHANGE THIS TO WHAT THE ACTUAL PROGRAM IS *
                                 // *********************************************
@@ -90,7 +92,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             // The address for the json will be stored in the variable: self.chosenMacAddress
  
             
-            self.socket.emit("run code", jsonString)
+            //self.socket.emit("run code", jsonString)
         }
         
         socket.on("busy") { data, ack in
@@ -232,8 +234,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // NEED THIS IBAction FUNCTION TO SEND JSON TO THE SERVER/ROBOT
     @IBAction func buildBarButtonDidPress(_ sender: UIBarButtonItem) {
         if self.chosenMacAddressIndex > -1 {
-            socket.connect()
-            socket.disconnect()
+            self.socket.connect()
+            print("Pressed the button")
         }
     }
     
@@ -241,23 +243,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func saveBarButtonDidPress(_ sender: UIBarButtonItem) {
         
                             // *********************************************
-        let jsonString = "blah blah blah" // * CHANGE THIS TO WHAT THE ACTUAL PROGRAM IS *
+        let jsonString = "" // * CHANGE THIS TO WHAT THE ACTUAL PROGRAM IS *
                             // *********************************************
         
-        if self.isNewProgram {
-            print("test new program")
-        }
-        
-        if self.isNewProgram {
+        if self.isNewProgram! {
             let alertController = UIAlertController(title: title, message: "Enter the name of this program", preferredStyle: .alert)
             
             let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
                 if let field = alertController.textFields?[0] {
                     let valid = ProgramManager.saveNewProgramWith(programName: field.text!, programJSON: jsonString)
-                    print("Saving program with name: \(field.text!)")
-                    print ("Saving program with json: \(jsonString)")
+                    //print("Saving program with name: \(field.text!)")
+                    //print ("Saving program with json: \(jsonString)")
                     if !valid {
                         self.addAlert(title: "Error", message: "A program with the same name already exists")
+                    } else {
+                        self.addAlert(title: "Success", message: "\(field.text!) has been saved")
+                        self.collectionDelegate?.sendEventToCollectionView()
                     }
                 }
             }
@@ -270,10 +271,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.present(alertController, animated: true)
         } else {
             let valid = ProgramManager.updateProgramWith(programName: self.programName, programJSON: jsonString, id: self.realmID)
-            print("Saving program with name: \(programName)")
-            print ("Saving program with json: \(jsonString)")
+            //print("Saving program with name: \(programName)")
+            //print ("Saving program with json: \(jsonString)")
             if !valid {
                 self.addAlert(title: "Error", message: "A program with the same name already exists")
+            } else {
+                self.addAlert(title: "Success", message: "\(self.programName) has been saved")
+                self.collectionDelegate?.sendEventToCollectionView()
             }
         }
     }

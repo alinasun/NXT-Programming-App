@@ -76,7 +76,7 @@ class AddressTableViewController: UITableViewController, PopoverDelegate, TableD
         
         socket.on("available nxts") { data, ack in
             //print("Interpreting data from server")
-            print(data[0])
+            //print(data[0])
             
             let addressData = data[0] as! NSDictionary
             let addressArray = addressData["addresses"] as! Array<String>
@@ -87,9 +87,11 @@ class AddressTableViewController: UITableViewController, PopoverDelegate, TableD
             
             
             // Print results, mainly for testing purposes here
+            /*
             for i in 0..<self.macAddressArray.count {
                 print(self.macAddressArray[i])
             }
+            */
         }
         
         socket.on("busy") { data, ack in

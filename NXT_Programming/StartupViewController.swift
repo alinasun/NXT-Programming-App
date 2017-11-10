@@ -12,7 +12,7 @@ protocol StartupDelegate {
 
 import UIKit
 
-class StartupViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate  {
+class StartupViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, NavigationDelegate  {
     @IBOutlet weak var newBarButton: UIBarButtonItem!
     @IBOutlet weak var openBarButton: UIBarButtonItem!
     @IBOutlet weak var deleteBarButton: UIBarButtonItem!
@@ -32,9 +32,9 @@ class StartupViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("another test, in the function")
         if let destination = segue.destination as? NavigationController {
-            print("test, going to NavigationController")
+            destination.navigationDelegate = self
+            
             let barButton = sender as! UIBarButtonItem
             let barButtonTitle: String = barButton.title!
             if barButtonTitle == "New" {
@@ -119,7 +119,7 @@ class StartupViewController: UIViewController, UICollectionViewDataSource, UICol
         
         // Update collectionView
         self.programsArray = ProgramManager.loadAllPrograms()
-        collectionView.reloadData()
+        self.collectionView.reloadData()
     }
     
     @IBAction func testRealmButtonDidPress(_ sender: UIButton) {
@@ -141,15 +141,26 @@ class StartupViewController: UIViewController, UICollectionViewDataSource, UICol
         
         // Update collectionView
         self.programsArray = ProgramManager.loadAllPrograms()
-        collectionView.reloadData()
+        self.collectionView.reloadData()
     }
     
     @IBAction func clearRealmObjectsButtonDidPress(_ sender: UIButton) {
         ProgramManager.clearAllPrograms()
         self.programsArray = ProgramManager.loadAllPrograms()
-        collectionView.reloadData()
+        self.collectionView.reloadData()
     }
 
+    // NavigationDelegate functions
+    
+    func reloadCollectionView() {
+        //print("event in startup viewcontroller fired")
+        self.programsArray = ProgramManager.loadAllPrograms()
+        self.collectionView.reloadData()
+    }
+    
+    
+    
+    
     /*
     // MARK: - Navigation
 
