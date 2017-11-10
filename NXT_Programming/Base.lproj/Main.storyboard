@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="30B-aE-fhw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="30B-aE-fhw">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -101,6 +101,7 @@
                             <barButtonItem title="Build" id="JTv-sC-tjC">
                                 <connections>
                                     <action selector="buildBarButtonDidPress:" destination="BYZ-38-t0r" id="CKl-z1-fhj"/>
+                                    <segue destination="Ahy-TD-UwR" kind="show" id="7Gw-lU-zII"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -117,6 +118,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1482.421875" y="39.84375"/>
+        </scene>
+        <!--Build View Controller-->
+        <scene sceneID="NPP-B3-xgn">
+            <objects>
+                <viewController id="Ahy-TD-UwR" customClass="BuildViewController" customModule="NXT_Programming" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="upL-eI-KYf"/>
+                        <viewControllerLayoutGuide type="bottom" id="DEC-e8-EIe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zuu-VI-CM8">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gji-pq-xET" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1482" y="783"/>
         </scene>
         <!--NXT Bricks-->
         <scene sceneID="TiH-y3-loS">
@@ -332,11 +351,10 @@
         <!--Navigation Controller-->
         <scene sceneID="zrg-SC-vuj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dTG-jd-w3l" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x6j-M2-LVt" customClass="NavigationController" customModule="NXT_Programming" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4i6-Or-fDD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -344,6 +362,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="cBG-ls-Vge"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dTG-jd-w3l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="758.203125" y="39.84375"/>
         </scene>
