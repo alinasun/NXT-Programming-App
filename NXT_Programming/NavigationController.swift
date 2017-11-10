@@ -19,14 +19,14 @@ class NavigationController: UINavigationController {
         
         if let destination = self.viewControllers.first {
             let vc = destination as! ViewController /* REPLACE ViewController WITH THE CORRECT CLASS */
-            
+            print("Attempting to change variables of ViewController")
             if !isNewProgram {
                 vc.isNewProgram = self.isNewProgram
                 vc.programName = self.programName
                 vc.programJSON = self.programJSON
                 vc.realmID = self.realmID
             } else {
-                vc.isNewProgram = self.isNewProgram
+                vc.isNewProgram = true
             }
         }
     }

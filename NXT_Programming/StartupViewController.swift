@@ -32,8 +32,9 @@ class StartupViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("another test, in the function")
         if let destination = segue.destination as? NavigationController {
-            //print("test")
+            print("test, going to NavigationController")
             let barButton = sender as! UIBarButtonItem
             let barButtonTitle: String = barButton.title!
             if barButtonTitle == "New" {

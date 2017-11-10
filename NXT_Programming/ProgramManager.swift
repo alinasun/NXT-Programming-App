@@ -57,6 +57,7 @@ class ProgramManager: NSObject {
         }
     }
     
+    // Will not save a program if a program with the given name already exists
     class func saveNewProgramWith(programName: String, programJSON: String) -> Bool {
         let realm = try! Realm()
         
@@ -89,6 +90,7 @@ class ProgramManager: NSObject {
         }
     }
     
+    // Will not save a program if a program with the given name already exists
     class func updateProgramWith(programName: String, programJSON: String, id: String) -> Bool {
         let realm = try! Realm()
         

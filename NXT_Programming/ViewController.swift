@@ -39,7 +39,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var chosenMacAddressIndex: Int = -1 // Also used to reload the tableView
     
     // Variables to modify from the StartupViewController
-    var isNewProgram: Bool?
+    var isNewProgram: Bool = true
     var programName: String = ""
     var programJSON: String = ""
     var realmID: String = ""
@@ -56,6 +56,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // NEED THE REST OF THE CODE IN THIS FUNCTION BELOW THIS COMMENT
         self.addListeners()
         commandsArray = JSONHelper.parseJSONWith(json: self.programJSON)
+        
+        if self.programJSON.characters.count > 0 {
+            print("Program's json: \(self.programJSON)")
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -237,20 +241,39 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func saveBarButtonDidPress(_ sender: UIBarButtonItem) {
         
                             // *********************************************
-        let jsonString = "" // * CHANGE THIS TO WHAT THE ACTUAL PROGRAM IS *
+        let jsonString = "blah blah blah" // * CHANGE THIS TO WHAT THE ACTUAL PROGRAM IS *
                             // *********************************************
         
-        if self.isNewProgram! {
-            let valid = ProgramManager.saveNewProgramWith(programName: "newName", programJSON: jsonString)
+        if self.isNewProgram {
+            print("test new program")
+        }
+        
+        if self.isNewProgram {
+            let alertController = UIAlertController(title: title, message: "Enter the name of this program", preferredStyle: .alert)
             
-            if !valid {
-                print("A program with the same name already exists")
+            let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
+                if let field = alertController.textFields?[0] {
+                    let valid = ProgramManager.saveNewProgramWith(programName: field.text!, programJSON: jsonString)
+                    print("Saving program with name: \(field.text!)")
+                    print ("Saving program with json: \(jsonString)")
+                    if !valid {
+                        self.addAlert(title: "Error", message: "A program with the same name already exists")
+                    }
+                }
             }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alertController.addTextField(configurationHandler: nil)
+            alertController.addAction(confirmAction)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true)
         } else {
             let valid = ProgramManager.updateProgramWith(programName: self.programName, programJSON: jsonString, id: self.realmID)
-            
+            print("Saving program with name: \(programName)")
+            print ("Saving program with json: \(jsonString)")
             if !valid {
-                print("A program with the same name already exists")
+                self.addAlert(title: "Error", message: "A program with the same name already exists")
             }
         }
     }
