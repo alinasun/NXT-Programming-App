@@ -15,7 +15,6 @@ class BrickObject{
         type = typeObj;
     }
 }
-
 class MotorObject : BrickObject {
     var speed: Int = 0
     var rotations: Int = 0
@@ -32,7 +31,6 @@ class MotorObject : BrickObject {
     func getRotations()->Int{ return rotations }
     func getBrake()->Bool{ return brake }
 }
-
 class DisplayObject : BrickObject{
     var clear: Bool = true
     var xLoc: Int = 0
@@ -49,7 +47,6 @@ class DisplayObject : BrickObject{
     func getXLoc()->Int{ return xLoc }
     func getYLoc()->Int{ return yLoc }
 }
-
 class SoundObject : BrickObject {
     var volume: Int = 0
     var typeSound: String = ""
@@ -63,7 +60,6 @@ class SoundObject : BrickObject {
     func getVolume()->Int{return volume}
     func getTypeSound()->String{return typeSound}
 }
-
 class WaitObject : BrickObject{
     var time: Int = 0
     
@@ -83,9 +79,6 @@ class BuildViewController: UIViewController {
     @IBOutlet weak var moveTankButtonUI: UIButton!
     @IBOutlet weak var soundButtonUI: UIButton!
     @IBOutlet weak var idLabel: UILabel!
-    
-    /**************************/
-    //things for old UI basic buttons
     
     let startButton = UIButton()
     var startPoint = CGPoint()
@@ -113,20 +106,20 @@ class BuildViewController: UIViewController {
     
     var address = ""
     
-    
     let socket: SocketIOClient = SocketIOClient(socketURL: URL(string: "http://robocode-server.herokuapp.com")!)
     //let address: String = self.idLabel.text!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //loadBuildPage()
         createStartButton()
         medMotorView = createMedMotor()
-        largeMotorView = createLargeMotor()
+        //largeMotorView = createLargeMotor()
         displayView = createDisplay()
         soundView = createSound()
         waitView = createWait()
+        sendJSON = createButton(title: "send", _x: 700, _y: 700, _width: 120, _height: 80)
+        sendJSON.addTarget(self, action: #selector(sendToServer), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(sendJSON)
         createTabs()
     }
     
@@ -137,7 +130,6 @@ class BuildViewController: UIViewController {
     
     /**
      * functions to do UI buttons (replacing, creating, dragging and
-     *
      */
     
     func createTabButton(type: String, _x: Int, _y: Int) -> UIButton {
@@ -179,37 +171,34 @@ class BuildViewController: UIViewController {
         startPoint = startButton.frame.origin
     }
     
+    func createButton(title: String, _x: Int, _y: Int, _width: Int, _height: Int)->UIButton{
+        let button = UIButton()
+        button.frame = CGRect(x: _x, y: _y, width: _width, height: _height)
+        button.setTitle(title, for: UIControlState())
+        button.backgroundColor = UIColor.red
+        button.layer.borderWidth = 1.2
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        button.setTitleColor(UIColor.white, for: UIControlState.normal)
+        return button;
+    }
+    
     func createMedMotor()->UIView{
         let tempView = UIView()
         tempView.backgroundColor = UIColor.yellow
         tempView.frame = CGRect(x: 25, y: 100, width: 120, height: 160)
         
-        let speedButton = UIButton()
-        speedButton.frame = CGRect(x: 0, y: 80, width: 35, height: 40)
-        speedButton.setTitle("speed", for: UIControlState())
-        speedButton.backgroundColor = UIColor.red
-        speedButton.layer.borderWidth = 1.2
-        speedButton.layer.cornerRadius = 5
-        speedButton.layer.masksToBounds = true
-        speedButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        var speedButton = UIButton()
+        speedButton = createButton(title: "speed", _x: 0, _y: 80, _width: 35, _height: 40);
         
-        let rotationButton = UIButton();
-        rotationButton.frame = CGRect(x: 40, y: 80, width: 35, height: 40)
-        rotationButton.setTitle("rotation", for: UIControlState())
-        rotationButton.backgroundColor = UIColor.red
-        rotationButton.layer.borderWidth = 1.2
-        rotationButton.layer.cornerRadius = 5
-        rotationButton.layer.masksToBounds = true
-        rotationButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        var rotationButton = UIButton();
+        rotationButton = createButton(title: "rotation", _x: 40, _y: 80, _width: 35, _height: 40)
         
-        let brakeButton = UIButton();
-        brakeButton.frame = CGRect(x: 80, y: 80, width: 35, height: 40)
-        brakeButton.setTitle("brake", for: UIControlState())
-        brakeButton.backgroundColor = UIColor.red
-        brakeButton.layer.borderWidth = 1.2
-        brakeButton.layer.cornerRadius = 5
-        brakeButton.layer.masksToBounds = true
-        brakeButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        var brakeButton = UIButton();
+        brakeButton = createButton(title: "brake", _x: 80, _y: 80, _width: 35, _height: 40)
+        
+        var deleteButton = UIButton();
+        deleteButton = createButton(title: "X", _x: 80, _y: 0, _width: 20, _height: 30)
         
         let name = UILabel()
         name.frame = CGRect(x: 0, y: 0, width: 120, height: 40)
@@ -236,7 +225,7 @@ class BuildViewController: UIViewController {
         speedButton.tag = 1
         rotationButton.addTarget(self, action: #selector(testAlert1), for: UIControlEvents.touchUpInside)
         brakeButton.addTarget(self, action: #selector(testAlert3), for: UIControlEvents.touchUpInside)
-        
+        deleteButton.addTarget(self, action: #selector(deleteBlock(sender:event:)), for: UIControlEvents.touchUpInside)
         tempView.addSubview(name)
         tempView.addSubview(speedMM)
         tempView.addSubview(rotationMM)
@@ -244,76 +233,7 @@ class BuildViewController: UIViewController {
         tempView.addSubview(speedButton)
         tempView.addSubview(rotationButton)
         tempView.addSubview(brakeButton)
-        self.view.addSubview(tempView)
-        
-        return tempView
-    }
-    
-    func createLargeMotor()-> UIView{
-        let tempView = UIView()
-        tempView.backgroundColor = UIColor.yellow
-        tempView.frame = CGRect(x: 300, y: 100, width: 120, height: 160)
-        
-        let speedButton = UIButton();
-        speedButton.frame = CGRect(x: 0, y: 80, width: 35, height: 40)
-        speedButton.setTitle("speed", for: UIControlState())
-        speedButton.backgroundColor = UIColor.red
-        speedButton.layer.borderWidth = 1.2
-        speedButton.layer.cornerRadius = 5
-        speedButton.layer.masksToBounds = true
-        speedButton.setTitleColor(UIColor.white, for: UIControlState.normal)
-        
-        let rotationButton = UIButton();
-        rotationButton.frame = CGRect(x: 40, y: 80, width: 35, height: 40)
-        rotationButton.setTitle("rotation", for: UIControlState())
-        rotationButton.backgroundColor = UIColor.red
-        rotationButton.layer.borderWidth = 1.2
-        rotationButton.layer.cornerRadius = 5
-        rotationButton.layer.masksToBounds = true
-        rotationButton.setTitleColor(UIColor.white, for: UIControlState.normal)
-        
-        let brakeButton = UIButton();
-        brakeButton.frame = CGRect(x: 80, y: 80, width: 35, height: 40)
-        brakeButton.setTitle("brake", for: UIControlState())
-        brakeButton.backgroundColor = UIColor.red
-        brakeButton.layer.borderWidth = 1.2
-        brakeButton.layer.cornerRadius = 5
-        brakeButton.layer.masksToBounds = true
-        brakeButton.setTitleColor(UIColor.white, for: UIControlState.normal)
-        
-        let name = UILabel()
-        name.frame = CGRect(x: 0, y: 0, width: 120, height: 40)
-        name.text = "Large Motor"
-        
-        let speed = UILabel()
-        speed.frame = CGRect(x: 0, y: 40, width: 35, height: 30)
-        speed.text = "50"
-        
-        let rotation = UILabel()
-        rotation.frame = CGRect(x: 40, y: 40, width: 35, height: 30)
-        rotation.text = "1"
-        
-        let brake = UILabel()
-        brake.frame = CGRect(x: 80, y: 40, width: 35, height: 30)
-        brake.text = "Yes"
-        
-        
-        var panGesture = UIPanGestureRecognizer()
-        panGesture = UIPanGestureRecognizer(target: self, action: #selector(draggedViewLM(_:)))
-        tempView.isUserInteractionEnabled = true
-        tempView.addGestureRecognizer(panGesture)
-        
-        speedButton.addTarget(self, action: #selector(testAlert1), for: UIControlEvents.touchUpInside)
-        rotationButton.addTarget(self, action: #selector(testAlert2), for: UIControlEvents.touchUpInside)
-        brakeButton.addTarget(self, action: #selector(testAlert3), for: UIControlEvents.touchUpInside)
-        
-        tempView.addSubview(name)
-        tempView.addSubview(speed)
-        tempView.addSubview(rotation)
-        tempView.addSubview(brake)
-        tempView.addSubview(speedButton)
-        tempView.addSubview(rotationButton)
-        tempView.addSubview(brakeButton)
+        tempView.addSubview(deleteButton)
         self.view.addSubview(tempView)
         
         return tempView
@@ -324,32 +244,17 @@ class BuildViewController: UIViewController {
         tempView.backgroundColor = UIColor.yellow
         tempView.frame = CGRect(x: 500, y: 100, width: 120, height: 160)
         
-        let clearScreenButton = UIButton();
-        clearScreenButton.frame = CGRect(x: 0, y: 80, width: 35, height: 40)
-        clearScreenButton.setTitle("speed", for: UIControlState())
-        clearScreenButton.backgroundColor = UIColor.red
-        clearScreenButton.layer.borderWidth = 1.2
-        clearScreenButton.layer.cornerRadius = 5
-        clearScreenButton.layer.masksToBounds = true
-        clearScreenButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        var clearScreenButton = UIButton();
+        clearScreenButton = createButton(title: "clear", _x: 0, _y: 80, _width: 35, _height: 40)
         
-        let xButton = UIButton();
-        xButton.frame = CGRect(x: 40, y: 80, width: 35, height: 40)
-        xButton.setTitle("rotation", for: UIControlState())
-        xButton.backgroundColor = UIColor.red
-        xButton.layer.borderWidth = 1.2
-        xButton.layer.cornerRadius = 5
-        xButton.layer.masksToBounds = true
-        xButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        var xButton = UIButton();
+        xButton = createButton(title: "x", _x: 40, _y: 80, _width: 35, _height: 40)
         
-        let yButton = UIButton();
-        yButton.frame = CGRect(x: 80, y: 80, width: 35, height: 40)
-        yButton.setTitle("brake", for: UIControlState())
-        yButton.backgroundColor = UIColor.red
-        yButton.layer.borderWidth = 1.2
-        yButton.layer.cornerRadius = 5
-        yButton.layer.masksToBounds = true
-        yButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        var yButton = UIButton();
+        yButton = createButton(title: "y", _x: 80, _y: 80, _width: 35, _height: 40)
+        
+        var deleteButton = UIButton();
+        deleteButton = createButton(title: "X", _x: 80, _y: 0, _width: 20, _height: 30)
         
         let name = UILabel()
         name.frame = CGRect(x: 0, y: 0, width: 120, height: 40)
@@ -376,7 +281,7 @@ class BuildViewController: UIViewController {
         clearScreenButton.addTarget(self, action: #selector(testAlert1), for: UIControlEvents.touchUpInside)
         xButton.addTarget(self, action: #selector(testAlert2), for: UIControlEvents.touchUpInside)
         yButton.addTarget(self, action: #selector(testAlert3), for: UIControlEvents.touchUpInside)
-        
+        deleteButton.addTarget(self, action: #selector(deleteBlock(sender:event:)), for: UIControlEvents.touchUpInside)
         tempView.addSubview(name)
         tempView.addSubview(clear)
         tempView.addSubview(xLoc)
@@ -384,6 +289,7 @@ class BuildViewController: UIViewController {
         tempView.addSubview(clearScreenButton)
         tempView.addSubview(xButton)
         tempView.addSubview(yButton)
+        tempView.addSubview(deleteButton)
         self.view.addSubview(tempView)
         
         return tempView
@@ -394,23 +300,14 @@ class BuildViewController: UIViewController {
         tempView.backgroundColor = UIColor.yellow
         tempView.frame = CGRect(x: 650, y: 100, width: 120, height: 160)
         
-        let volumeButton = UIButton();
-        volumeButton.frame = CGRect(x: 0, y: 80, width: 35, height: 40)
-        volumeButton.setTitle("speed", for: UIControlState())
-        volumeButton.backgroundColor = UIColor.red
-        volumeButton.layer.borderWidth = 1.2
-        volumeButton.layer.cornerRadius = 5
-        volumeButton.layer.masksToBounds = true
-        volumeButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        var volumeButton = UIButton();
+        volumeButton = createButton(title: "volume", _x: 0, _y: 80, _width: 35, _height: 40)
         
-        let playTypeButton = UIButton();
-        playTypeButton.frame = CGRect(x: 40, y: 80, width: 35, height: 40)
-        playTypeButton.setTitle("rotation", for: UIControlState())
-        playTypeButton.backgroundColor = UIColor.red
-        playTypeButton.layer.borderWidth = 1.2
-        playTypeButton.layer.cornerRadius = 5
-        playTypeButton.layer.masksToBounds = true
-        playTypeButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        var playTypeButton = UIButton();
+        playTypeButton = createButton(title: "type", _x: 40, _y: 80, _width: 35, _height: 40)
+        
+        var deleteButton = UIButton();
+        deleteButton = createButton(title: "X", _x: 80, _y: 0, _width: 20, _height: 30)
         
         let name = UILabel()
         name.frame = CGRect(x: 0, y: 0, width: 120, height: 40)
@@ -431,12 +328,13 @@ class BuildViewController: UIViewController {
         
         volumeButton.addTarget(self, action: #selector(testAlert1), for: UIControlEvents.touchUpInside)
         playTypeButton.addTarget(self, action: #selector(testAlert2), for: UIControlEvents.touchUpInside)
-        
+        deleteButton.addTarget(self, action: #selector(deleteBlock(sender:event:)), for: UIControlEvents.touchUpInside)
         tempView.addSubview(name)
         tempView.addSubview(volume)
         tempView.addSubview(playType)
         tempView.addSubview(volumeButton)
         tempView.addSubview(playTypeButton)
+        tempView.addSubview(deleteButton)
         self.view.addSubview(tempView)
         
         return tempView
@@ -447,14 +345,11 @@ class BuildViewController: UIViewController {
         tempView.backgroundColor = UIColor.yellow
         tempView.frame = CGRect(x: 800, y: 100, width: 120, height: 160)
         
-        let timeButton = UIButton();
-        timeButton.frame = CGRect(x: 0, y: 80, width: 35, height: 40)
-        timeButton.setTitle("Time", for: UIControlState())
-        timeButton.backgroundColor = UIColor.red
-        timeButton.layer.borderWidth = 1.2
-        timeButton.layer.cornerRadius = 5
-        timeButton.layer.masksToBounds = true
-        timeButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        var timeButton = UIButton();
+        timeButton = createButton(title: "time", _x: 0, _y: 80, _width: 35, _height: 40)
+        
+        var deleteButton = UIButton();
+        deleteButton = createButton(title: "X", _x: 80, _y: 0, _width: 20, _height: 30)
         
         let name = UILabel()
         name.frame = CGRect(x: 0, y: 0, width: 120, height: 40)
@@ -470,10 +365,12 @@ class BuildViewController: UIViewController {
         tempView.addGestureRecognizer(panGesture)
         
         timeButton.addTarget(self, action: #selector(testAlert1), for: UIControlEvents.touchUpInside)
+        deleteButton.addTarget(self, action: #selector(deleteBlock(sender:event:)), for: UIControlEvents.touchUpInside)
         
         tempView.addSubview(name)
         tempView.addSubview(time)
         tempView.addSubview(timeButton)
+        tempView.addSubview(deleteButton)
         self.view.addSubview(tempView)
         
         return tempView
@@ -483,10 +380,12 @@ class BuildViewController: UIViewController {
         if(type == "medMotorView"){
             medMotorView = createMedMotor()
             return medMotorView
-        }else if(type == "largeMotorView"){
-            largeMotorView = createLargeMotor()
-            return largeMotorView
-        }else if(type == "displayView"){
+        }
+//        else if(type == "largeMotorView"){
+//            largeMotorView = createLargeMotor()
+//            return largeMotorView
+//        }
+        else if(type == "displayView"){
             displayView = createDisplay()
             return displayView
         }else if(type == "soundView"){
@@ -562,62 +461,6 @@ class BuildViewController: UIViewController {
             //            }
             
             medMotorView = replaceView(type: "medMotorView")
-        }
-    }
-    
-    func draggedViewLM(_ sender:UIPanGestureRecognizer){
-        let translation = sender.translation(in: self.view)
-        largeMotorView.center = CGPoint(x: largeMotorView.center.x + translation.x, y: largeMotorView.center.y + translation.y)
-        sender.setTranslation(CGPoint.zero, in: self.view)
-        
-        let xLoc = largeMotorView.center.x + translation.x
-        let yLoc = largeMotorView.center.y + translation.y
-        
-        var index = Int()
-        index = viewSequence.count
-        var toAppend = Bool()
-        toAppend = false
-        
-        if(yLoc > 300 && yLoc < 440){
-            //if dragged to end
-            if(xLoc > (nextPoint.x + 128)){
-                largeMotorView.center = CGPoint(x: nextPoint.x + 128, y: nextPoint.y)
-                nextPoint.x = nextPoint.x + 128
-                toAppend = true
-            }
-                //if dragged to middle
-            else if(xLoc > startPoint.x && xLoc < nextPoint.x){
-                var beginXRange = startPoint.x
-                var endXRange = startPoint.x + 128
-                for i in  0..<viewSequence.count {
-                    if(xLoc < endXRange && xLoc > beginXRange){
-                        index = i
-                    }else{
-                        beginXRange += 128
-                        endXRange += 128
-                    }
-                }
-            }
-        }
-        if(sender.state == UIGestureRecognizerState.ended){
-            //            if(validPlacement){
-            let newLM = MotorObject(ty: "motor");
-            newLM.setSpeed(newSpeed: 50)
-            newLM.setBrake(newBrake: true)
-            newLM.setRotations(newRot: 5)
-            if(toAppend){
-                objectSequence.append(newLM);
-                viewSequence.append(largeMotorView)
-            }else{
-                objectSequence.insert(newLM, at: index)
-                viewSequence.insert(largeMotorView, at: index)
-            }
-            updateUIViewOrder()
-            //            }else{
-            //                largeMotorView.isHidden = true
-            //            }
-            
-            largeMotorView = replaceView(type: "largeMotorView")
         }
     }
     
@@ -808,7 +651,6 @@ class BuildViewController: UIViewController {
         }
         
         // 3. Grab the value from the text field, and print it when the user clicks OK.
-        
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
             print("Text field: \(String(describing: textField?.text))");
@@ -892,7 +734,6 @@ class BuildViewController: UIViewController {
         
     }
     
-    
     func didPressButtonFromSpeedInputView(sender:UIButton) {
         // do whatever you want
         // make view disappears again, or remove from its superview
@@ -904,8 +745,6 @@ class BuildViewController: UIViewController {
     @IBAction func sendToServer(){
         //let address: String = self.idLabel.text!
         
-        print("sending to server")
-        
         var jsonArray = [JSON]()
         
         for BrickObject in objectSequence {
@@ -914,26 +753,16 @@ class BuildViewController: UIViewController {
                 let json: JSON = ["type":"motor", "brake": true, "power": 100, "revolutions":5, "port":"A"]
                 jsonArray.append(json)
             }else if(BrickObject.type == "display"){
-                
+                let json: JSON = ["type":"DISPLAY", "brake": true, "power": 100, "revolutions":5, "port":"A"]
+                jsonArray.append(json)
             }else if(BrickObject.type == "sound"){
                 let json: JSON = ["type":"playsound", "soundfile": "Woops"]
                 jsonArray.append(json)
             }else if(BrickObject.type == "wait"){
-                
+                let json: JSON = ["type":"WAIT", "brake": true, "power": 100, "revolutions":5, "port":"A"]
+                jsonArray.append(json)
             }
         }
-        
-        /*
-         let json: JSON = ["type": "motor", "brake": true, "power": 100, "revolutions": 5, "port": "A"]
-         jsonArray.append(json)
-         
-         let json1: JSON = ["type": "playsound", "freq": 500,"duration": 500,"soundfile": "filename"]
-         jsonArray.append(json1)
-         
-         let json2: JSON = ["type": "touch", "port": 1,
-         "condition": [ "touch": true, "notouch": false, "while": true, "if": ["type": "motor", "brake": true, "power": 100, "revolutions": 5, "port": "A"], "else": ["type": "playsound", "freq": 500,"duration": 500,"soundfile": "filename"]]]
-         jsonArray.append(json2)
-         */
         
         let jsonString: JSON = ["address" : "00:16:53:19:1E:AC", "commands" : jsonArray]
         let jsonFinal = jsonString.description
@@ -954,20 +783,52 @@ class BuildViewController: UIViewController {
     
     func loadViewTabOne(){
         waitView.isHidden = true;
-        
-        medMotorView.isHidden = false;
-        largeMotorView.isHidden = false;
-        displayView.isHidden = false;
-        soundView.isHidden = false;
+        showViews(show: false);
     }
     
     func loadViewTabTwo(){
-        medMotorView.isHidden = true;
-        largeMotorView.isHidden = true;
-        displayView.isHidden = true;
-        soundView.isHidden = true;
-        
         waitView.isHidden = false;
+        showViews(show: true);
+    }
+    
+    func showViews(show: Bool){
+        medMotorView.isHidden = show;
+        largeMotorView.isHidden = show;
+        displayView.isHidden = show;
+        soundView.isHidden = show;
+    }
+    
+    func deleteBlock(sender: Any, event: UIEvent){
+        print("in delete block")
+        let myButton:UIButton = sender as! UIButton
+        let touches: Set<UITouch>? = event.touches(for: myButton)
+        let touch: UITouch? = touches?.first
+        let touchPoint: CGPoint? = touch?.location(in: self.view)
+        print("touchPoint\(touchPoint)")
+        
+        var beginXRange = startPoint.x
+        var endXRange = startPoint.x + 128
+        print("begin x range: ")
+        print(beginXRange)
+        print("end x range: ")
+        print(endXRange)
+        
+        let xLoc = touchPoint?.x
+        print("touchpoint x: ")
+        print(xLoc)
+        for i in  0..<viewSequence.count {
+            if(xLoc! < endXRange && xLoc! > beginXRange){
+                let view = viewSequence[i]
+                view.isHidden = true
+                viewSequence.remove(at: i)
+                objectSequence.remove(at: i)
+                updateUIViewOrder()
+                return
+            }else{
+                beginXRange += 128
+                endXRange += 128
+            }
+        }
     }
     
     /*
@@ -981,5 +842,3 @@ class BuildViewController: UIViewController {
      */
     
 }
-
-
